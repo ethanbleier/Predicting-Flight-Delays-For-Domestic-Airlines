@@ -1,6 +1,21 @@
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0 # Use the latest version
+  - repo: local
     hooks:
-      - id: jupyter-notebook-cleanup
-        args: ["--clear-output", "--clear-metadata"]
+      - id: clear-jupyter-notebook
+        name: Clean notebook
+        # entry: >
+        #   bash -c "cp project2.ipynb project2.ipynb.temp
+        #   && jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --to=notebook --output=project2.clean project2.ipynb.temp
+        #   && rm -f project2.ipynb.temp project2.clean.ipynb"
+        # entry: >
+        #   bash -c "cp project2.ipynb project2.ipynb.temp
+        #   && jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --to=notebook --output=project2.clean project2.ipynb.temp
+        #   && rm -f project2.ipynb.temp project2.clean.ipynb"
+        # entry: >
+        #   bash -c "cp project2.ipynb project2.temp.ipynb
+        #   && jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --to=notebook --inplace project2.temp.ipynb"
+        entry: >
+          bash -c "jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --to=notebook --inplace project2.ipynb"
+        language: system
+        #files: \.ipynb$
+        types: [jupyter]
