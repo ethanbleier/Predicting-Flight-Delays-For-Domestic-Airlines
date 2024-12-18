@@ -3,9 +3,7 @@ repos:
     hooks:
       - id: clear-jupyter-notebook
         name: Clean notebook
-        entry: jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --to=notebook --inplace project2.ipynb
-        # entry: >
-        #   bash -c "jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --to=notebook --inplace project2.ipynb"
+        entry: jupyter nbconvert --ClearOutputPreprocessor.enabled=True --ClearMetadataPreprocessor.enabled=True --to=notebook --inplace
         language: system
-        #files: \.ipynb$
+        files: \.ipynb$
         types: [jupyter]
